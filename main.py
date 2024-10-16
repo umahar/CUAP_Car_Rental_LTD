@@ -2,6 +2,7 @@
 
 from core.user import User
 from data import menus, prompts
+from services.load_data_from_db import load_data
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
 
@@ -10,9 +11,9 @@ def display_main_menu():
     """the main menu for the app"""
     print(prompts.WELCOME)
     opt = get_user_option(menus.welcome_menu, prompts.STANDARD_MENU)
-    if opt == 0:
-        register_user()
     if opt == 1:
+        register_user()
+    if opt == 2:
         login_user()
 
 
@@ -50,14 +51,12 @@ def register_user():
     print("USER REGISTERED")
 
 
-def load_data():
-    """loads the data from the db"""
-
-
 def main():
     """loads the program and calls the menu"""
-    # load data from db
-    display_main_menu()
+    if load_data():
+        display_main_menu()
+    else:
+        print(prompts.DATA_LOADING_FAILED)
 
 
 main()

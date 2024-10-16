@@ -6,3 +6,5 @@ INSERT INTO users(
     ) 
 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
 """
+
+GET_ALL_USERS = """SELECT * from users;"""

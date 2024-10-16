@@ -10,6 +10,7 @@ def get_user_option(menu, heading):
         for index, item in enumerate(menu):
             print(f"{index+1}. {item}")
         opt = input("\nOPTION = ")
+        print()
         if not opt.isdigit():
             print(prompts.INVALID_INPUT)
             continue
@@ -18,4 +19,4 @@ def get_user_option(menu, heading):
         if int(opt) < 0 or int(opt) > len(menu):
             print(prompts.INVALID_INPUT)
             continue
-        return int(opt) - 1
+        return int(opt)
