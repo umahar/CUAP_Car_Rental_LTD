@@ -1,5 +1,6 @@
 """the program starts from this file"""
 
+from core.user import User
 from data import menus, prompts
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
@@ -10,9 +11,9 @@ def display_main_menu():
     print(prompts.WELCOME)
     opt = get_user_option(menus.welcome_menu, prompts.STANDARD_MENU)
     if opt == 0:
-        login_user()
-    if opt == 1:
         register_user()
+    if opt == 1:
+        login_user()
 
 
 def login_user():
@@ -34,6 +35,19 @@ def register_user():
     email = UserInputHandler.get_valid_email("Enter Your Email: ")
     user_password = UserInputHandler.get_valid_password("Enter Your Password: ")
     phone_number = UserInputHandler.get_valid_phone_no("Enter Your Phone Number: ")
+
+    user = User(
+        username,
+        user_role,
+        first_name,
+        last_name,
+        gender,
+        date_of_birth,
+        email,
+        user_password,
+        phone_number,
+    )
+    print("USER REGISTERED")
 
 
 def load_data():
