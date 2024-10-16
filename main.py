@@ -9,16 +9,21 @@ from utils.input_handler import UserInputHandler
 
 def display_main_menu():
     """the main menu for the app"""
-    print(prompts.WELCOME)
-    opt = get_user_option(menus.welcome_menu, prompts.STANDARD_MENU)
-    if opt == 1:
-        register_user()
-    if opt == 2:
-        login_user()
+    while True:
+        print(prompts.WELCOME)
+        opt = get_user_option(menus.welcome_menu, prompts.STANDARD_MENU)
+        if opt == 0:
+            break
+        if opt == 1:
+            register_user()
+        if opt == 2:
+            login_user()
 
 
 def login_user():
     """authenticates and login the user"""
+    email = UserInputHandler.get_valid_email("Enter your account Email to Login: ")
+    password = input("Enter your Account Password: ")
 
 
 def register_user():
@@ -36,7 +41,6 @@ def register_user():
     email = UserInputHandler.get_valid_email("Enter Your Email: ")
     user_password = UserInputHandler.get_valid_password("Enter Your Password: ")
     phone_number = UserInputHandler.get_valid_phone_no("Enter Your Phone Number: ")
-
     user = User(
         username,
         user_role,
@@ -48,13 +52,19 @@ def register_user():
         user_password,
         phone_number,
     )
-    print("USER REGISTERED")
+    print(prompts.REGISTER_SUCCESS)
+    display_login_menu(user)
+
+
+def display_login_menu(user):
+    """displays the login menu based on user"""
 
 
 def main():
     """loads the program and calls the menu"""
     if load_data():
         display_main_menu()
+        print(prompts.EXIT)
     else:
         print(prompts.DATA_LOADING_FAILED)
 
