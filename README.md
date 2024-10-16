@@ -66,10 +66,9 @@ The project uses a MySQL database with the following tables:
 
 ## Technologies Used
 
-- **Backend**: Python (Flask or Django for web interface)
+- **Backend**: Python
 - **Database**: MySQL
 - **Libraries**:
-  - `Flask` or `Django` for web-based implementation
   - `MySQL-Connector` for database connectivity
   - `bcrypt` for password hashing
   - `SQLAlchemy` for ORM (if using Flask)

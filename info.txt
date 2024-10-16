@@ -1,0 +1,33 @@
+Functional Requirements
+
+User Management
+User registration and login (with different roles: Customer, Admin).
+Profile management (view and update profile).
+Password reset functionality.
+
+
+Car Inventory Management
+Add, update, view, and delete car details (Admin only).
+Car attributes include make, model, year, category (SUV, sedan, etc.), price per day, availability status, mileage, etc.
+Track car maintenance history and service status.
+
+
+Booking and Rental Management
+Customers can search for available cars based on date range and car category.
+Book a car for a specified rental period.
+Extend rental period, cancel a booking, or return a car.
+Calculate total rental cost based on the rental duration and car rate.
+Track rental status (booked, returned, overdue).
+
+
+Payment and Billing
+Generate invoices for completed rentals.
+Payment tracking and status updates.
+Admin can manage payment records and generate financial reports.
+
+
+Admin Panel
+Admin dashboard with an overview of system metrics (number of rentals, cars available, etc.).
+Manage users and their roles.
+View rental history, overdue rentals, and generate reports.
+Track financial performance (total revenue, most rented cars, etc.).
