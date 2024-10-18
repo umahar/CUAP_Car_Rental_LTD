@@ -31,3 +31,14 @@ Admin dashboard with an overview of system metrics (number of rentals, cars avai
 Manage users and their roles.
 View rental history, overdue rentals, and generate reports.
 Track financial performance (total revenue, most rented cars, etc.).
+
+
+conn = create_connection()
+    try:
+        cursor = conn.cursor()
+    except Error as e:
+        print(prompts.DB_ERROR.format(e))
+        return False
+    finally:
+        cursor.close()
+        conn.close()

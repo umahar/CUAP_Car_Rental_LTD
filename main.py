@@ -2,6 +2,9 @@
 
 from core.user import User
 from data import menus, prompts
+from services.authenticate_user import authenticate_user
+from services.get_data_by_user_id import get_data_by_user_id
+from services.get_user_id_by_email import get_user_id_by_email
 from services.load_data_from_db import load_data
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
@@ -24,6 +27,11 @@ def login_user():
     """authenticates and login the user"""
     email = UserInputHandler.get_valid_email("Enter your account Email to Login: ")
     password = input("Enter your Account Password: ")
+    if authenticate_user(email, password):
+        user_id = get_user_id_by_email(email)
+        display_login_menu(user_id)
+    else:
+        print(prompts.LOGIN_FAILED)
 
 
 def register_user():
@@ -53,11 +61,18 @@ def register_user():
         phone_number,
     )
     print(prompts.REGISTER_SUCCESS)
-    display_login_menu(user)
+    user_id = get_user_id_by_email(email)
+    display_login_menu(user_id)
 
 
-def display_login_menu(user):
+def display_login_menu(user_id):
     """displays the login menu based on user"""
+    user_data = get_data_by_user_id(user_id)
+    print(
+        prompts.WELCOME_LOGIN_TEXT.format(
+            prompts.DASHES, user_data[3], user_data[4], prompts.DASHES
+        )
+    )
 
 
 def main():

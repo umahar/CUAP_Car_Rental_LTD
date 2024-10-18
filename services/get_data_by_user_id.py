@@ -1,20 +1,19 @@
-"""authenticates a user based on email and password"""
+"""fetched user data using given user id"""
 
 from mysql.connector import Error
 from config.db_connection import create_connection
 from data import prompts, users_queries
 
 
-def authenticate_user(email, user_password):
-    """matches email and password"""
+def get_data_by_user_id(user_id):
+    """fetched user data using given user id"""
     conn = create_connection()
     try:
         cursor = conn.cursor()
-        cursor.execute(users_queries.GET_USER_PASSWORD_BY_EMAIL, (email,))
-        fetched_pass = cursor.fetchone()
-        if fetched_pass:
-            if fetched_pass[0] == user_password:
-                return True
+        cursor.execute(users_queries.GET_USER_DATA_BY_ID, (user_id,))
+        user = cursor.fetchone()
+        if user:
+            return user
         return False
     except Error as e:
         print(prompts.DB_ERROR.format(e))

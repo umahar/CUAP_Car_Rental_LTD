@@ -8,3 +8,9 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
 """
 
 GET_ALL_USERS = """SELECT * from users;"""
+
+GET_USER_PASSWORD_BY_EMAIL = """SELECT user_password from users WHERE email = %s;"""
+
+GET_USER_DATA_BY_ID = """SELECT * from users where user_id = %s;"""
+
+GET_USER_ID_BY_EMAIL = """SELECT user_id from users where email = %s;"""
