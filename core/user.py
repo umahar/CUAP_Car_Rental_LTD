@@ -17,7 +17,7 @@ class User:
         email,
         user_password,
         phone_number,
-        is_new_user="True",
+        is_new_user=True,
     ):
         self.username = username
         self.user_role = user_role
