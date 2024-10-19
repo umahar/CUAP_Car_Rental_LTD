@@ -42,3 +42,99 @@ conn = create_connection()
     finally:
         cursor.close()
         conn.close()
+
+
+1. Customer Menu Options
+These options are for customers who want to rent a car.
+
+1. View Available Cars
+List all available cars for rent.
+Filter by car type (SUV, sedan, hatchback, etc.), price range, or location.
+2. Rent a Car
+Choose a car to rent.
+Specify rental duration (start and end dates).
+Review rental terms and confirm the booking.
+3. View My Rentals
+See current and past rentals.
+View rental details (car, dates, price).
+Option to extend or cancel the rental (if allowed by the policy).
+4. Manage Account
+4.1. Update Personal Information
+Update name, email, phone number, etc.
+4.2. Change Password
+Update account password.
+5. Payment Options
+5.1. View Payment History
+List previous payments.
+5.2. Make a Payment
+Pay outstanding rental fees.
+6. Contact Support
+Reach customer support for issues or inquiries.
+7. Log Out
+2. Vendor Menu Options
+These options are for vendors who list and manage cars for rent.
+
+1. Manage Cars
+1.1. Add New Car
+Add a new car to the system (make, model, year, rental price, location).
+1.2. Update Car Details
+Modify details of an existing car.
+1.3. Remove Car
+Remove a car from the list of available rentals.
+2. View Rental Requests
+See all rental requests for their cars.
+Approve or reject rental requests.
+View rental details.
+3. Manage Rentals
+3.1. View Ongoing Rentals
+List cars currently rented out.
+3.2. End Rental
+Mark a rental as completed.
+4. Payment Management
+4.1. View Payment History
+View payments made by customers for rentals.
+4.2. Request Payment Payout
+Request payout for completed rentals.
+5. Manage Account
+5.1. Update Personal Information
+Update vendor details (business name, contact information).
+5.2. Change Password
+Update account password.
+6. Contact Admin
+Reach out to admin for support or system issues.
+7. Log Out
+3. Admin Menu Options
+These options are for administrators who manage the entire system.
+
+1. User Management
+1.1. View All Users
+List all users (customers, vendors, admins).
+1.2. Add New User
+Create a new user account (customer, vendor, or admin).
+1.3. Update User Details
+Modify details of an existing user.
+1.4. Delete User
+Remove a user from the system.
+2. Manage Cars
+2.1. View All Cars
+List all cars in the system.
+2.2. Remove Car
+Delete a car from the system.
+3. View Rentals
+3.1. View All Rentals
+List all rental activities.
+3.2. Manage Rental Status
+Approve, reject, or mark rentals as completed.
+4. Financial Reports
+4.1. View Payment History
+See payment transactions.
+4.2. Generate Financial Reports
+Create reports for rental income, expenses, etc.
+5. System Settings
+5.1. Update Rental Policies
+Modify rental terms and conditions.
+5.2. Manage User Roles
+Add or update user roles (e.g., add new roles or modify permissions).
+6. Contact Support
+Handle support tickets raised by users.
+7. Log Out

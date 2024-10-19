@@ -3,9 +3,8 @@
 from core.user import User
 from data import menus, prompts
 from services.authenticate_user import authenticate_user
-from services.get_data_by_user_id import get_data_by_user_id
 from services.get_user_id_by_email import get_user_id_by_email
-from services.load_data_from_db import load_data
+from services.load_user_data_from_db import load_user_data
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
 
@@ -18,9 +17,9 @@ def display_main_menu():
         if opt == 0:
             break
         if opt == 1:
-            register_user()
-        if opt == 2:
             login_user()
+        if opt == 2:
+            register_user()
 
 
 def login_user():
@@ -29,7 +28,11 @@ def login_user():
     password = input("Enter your Account Password: ")
     if authenticate_user(email, password):
         user_id = get_user_id_by_email(email)
-        display_login_menu(user_id)
+        user = load_user_data(user_id)
+        if user:
+            handle_login_menu(user)
+        else:
+            print(prompts.DATA_LOADING_FAILED)
     else:
         print(prompts.LOGIN_FAILED)
 
@@ -61,27 +64,64 @@ def register_user():
         phone_number,
     )
     print(prompts.REGISTER_SUCCESS)
-    user_id = get_user_id_by_email(email)
-    display_login_menu(user_id)
+    handle_login_menu(user)
 
 
-def display_login_menu(user_id):
+def handle_login_menu(user):
     """displays the login menu based on user"""
-    user_data = get_data_by_user_id(user_id)
     print(
         prompts.WELCOME_LOGIN_TEXT.format(
-            prompts.DASHES, user_data[3], user_data[4], prompts.DASHES
+            prompts.DASHES, user.first_name, user.last_name, prompts.DASHES
         )
     )
+    if user.user_role == "Customer":
+        customer_menu(user)
+    elif user.user_role == "Vendor":
+        vendor_menu(user)
+    elif user.user_role == "Admin":
+        admin_menu(user)
+
+
+def customer_menu(customer):
+    """customer menu handling"""
+    while True:
+        opt = get_user_option(menus.customer_login_menu, prompts.STANDARD_MENU)
+        if opt == 0:
+            break
+        if opt == 1:
+            pass
+        if opt == 2:
+            pass
+
+
+def vendor_menu(vendor):
+    """vendor menu handling"""
+    while True:
+        opt = get_user_option(menus.vendor_login_menu, prompts.STANDARD_MENU)
+        if opt == 0:
+            break
+        if opt == 1:
+            pass
+        if opt == 2:
+            pass
+
+
+def admin_menu(admin):
+    """admin menu handling"""
+    while True:
+        opt = get_user_option(menus.admin_login_menu, prompts.STANDARD_MENU)
+        if opt == 0:
+            break
+        if opt == 1:
+            pass
+        if opt == 2:
+            pass
 
 
 def main():
     """loads the program and calls the menu"""
-    if load_data():
-        display_main_menu()
-        print(prompts.EXIT)
-    else:
-        print(prompts.DATA_LOADING_FAILED)
+    display_main_menu()
+    print(prompts.EXIT)
 
 
 main()
