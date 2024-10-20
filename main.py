@@ -2,6 +2,7 @@
 
 from core.user import User
 from data import menus, prompts
+from services.car_services.vendor_manage_car import manage_cars
 from services.user_services.authenticate_user import authenticate_user
 from services.user_services.get_user_id_by_email import get_user_id_by_email
 from services.user_services.load_user_data_from_db import load_user_data
@@ -101,7 +102,7 @@ def vendor_menu(vendor):
         if opt == 0:
             break
         if opt == 1:
-            pass
+            manage_cars(vendor)
         if opt == 2:
             pass
 
