@@ -2,9 +2,9 @@
 
 from core.user import User
 from data import menus, prompts
-from services.authenticate_user import authenticate_user
-from services.get_user_id_by_email import get_user_id_by_email
-from services.load_user_data_from_db import load_user_data
+from services.user_services.authenticate_user import authenticate_user
+from services.user_services.get_user_id_by_email import get_user_id_by_email
+from services.user_services.load_user_data_from_db import load_user_data
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
 

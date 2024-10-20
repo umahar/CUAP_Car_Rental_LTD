@@ -1,7 +1,7 @@
 """loads all the saved data from the DB"""
 
 from core.user import User
-from services.get_data_by_user_id import get_data_by_user_id
+from services.user_services.get_data_by_user_id import get_data_by_user_id
 
 
 def load_user_data(user_id):
