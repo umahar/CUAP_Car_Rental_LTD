@@ -1,6 +1,6 @@
 """user class to handle customers,vendors & admin"""
 
-from services.add_new_user import add_new_user
+from services.user_services.add_new_user import add_new_user
 
 
 class User:

@@ -38,3 +38,4 @@ NOTIFICATIONS_DELETED = f"\n{DASHES}ALL NOTIFICATIONS DELETED{DASHES}\n"
 UNREAD_NOTIFICATIONS = (
     "\nYou have {} unread notifications. View notifications by pressing '9'.\n"
 )
+CAR_ADDED = f"\n{DASHES}CAR REGISTRATION SUCCESSFUL{DASHES}\n"

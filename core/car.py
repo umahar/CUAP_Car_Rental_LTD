@@ -6,7 +6,6 @@ class Car:
 
     def __init__(
         self,
-        car_id,
         vendor_id,
         make,
         model,
@@ -16,9 +15,8 @@ class Car:
         rental_price_per_day,
         mileage,
         car_location,
-        is_available,
+        is_available=True,
     ):
-        self.car_id = car_id
         self.vendor_id = vendor_id
         self.make = make
         self.model = model
