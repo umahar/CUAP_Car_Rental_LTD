@@ -153,14 +153,17 @@ def admin_menu(admin):
 
 def main():
     """loads the program and calls the menu"""
-    display_main_menu()
-    print(prompts.EXIT)
+    try:
+        display_main_menu()
+    except Exception as e:
+        print(prompts.GENERAL_ERROR)
+        tb = traceback.extract_tb(e.__traceback__)[-1]
+        print(
+            f"\nERROR LOCATION: {tb.filename}\nLINE NO: {tb.lineno}\nFUNCTION: {tb.name}"
+        )
+        print(f"\nERROR TYPE: {type(e).__name__}\nMESSAGE: {e}\n")
+    finally:
+        print(prompts.EXIT)
 
 
-try:
-    main()
-except Exception as e:
-    print(prompts.GENERAL_ERROR)
-    tb = traceback.extract_tb(e.__traceback__)[-1]
-    print(f"\nERROR LOCATION: {tb.filename}\nLINE NO: {tb.lineno}\nFUNCTION: {tb.name}")
-    print(f"\nERROR TYPE: {type(e).__name__}\nMESSAGE: {e}\n")
+main()

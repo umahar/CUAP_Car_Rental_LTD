@@ -10,10 +10,10 @@ from config.db_connection import create_connection
 
 def edit_user_detail(user, item_to_edit, new_value=""):
     """edits allowed detail"""
-    current_value = getattr(user, item_to_edit)
     if item_to_edit == "DELETE":
         manage_delete(user.username)
     else:
+        current_value = getattr(user, item_to_edit)
         if edit_user_item(user.username, item_to_edit, new_value):
             setattr(user, item_to_edit, new_value)
             print(f"\nChanging detail '{current_value}' to '{new_value}'.")
