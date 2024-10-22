@@ -6,3 +6,5 @@ INSERT INTO cars(
     ) 
 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
 """
+
+GET_ALL_CARS = """SELECT * FROM cars WHERE vendor_id = %s"""
