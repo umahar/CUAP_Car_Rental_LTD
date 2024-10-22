@@ -6,6 +6,7 @@ from services.car_services.vendor_manage_car import manage_cars
 from services.user_services.authenticate_user import authenticate_user
 from services.user_services.get_user_id_by_email import get_user_id_by_email
 from services.user_services.load_user_data_from_db import load_user_data
+from services.user_services.manage_account import manage_user_profile
 from utils.get_user_option import get_user_option
 from utils.input_handler import UserInputHandler
 
@@ -94,6 +95,14 @@ def customer_menu(customer):
             pass
         if opt == 2:
             pass
+        if opt == 3:
+            manage_user_profile(customer)
+        if opt == 4:
+            pass
+        if opt == 5:
+            pass
+        if opt == 6:
+            pass
 
 
 def vendor_menu(vendor):
@@ -106,6 +115,16 @@ def vendor_menu(vendor):
             manage_cars(vendor)
         if opt == 2:
             pass
+        if opt == 3:
+            manage_user_profile(vendor)
+        if opt == 4:
+            pass
+        if opt == 5:
+            pass
+        if opt == 6:
+            pass
+        if opt == 7:
+            pass
 
 
 def admin_menu(admin):
@@ -117,6 +136,14 @@ def admin_menu(admin):
         if opt == 1:
             pass
         if opt == 2:
+            pass
+        if opt == 3:
+            manage_user_profile(admin)
+        if opt == 4:
+            pass
+        if opt == 5:
+            pass
+        if opt == 6:
             pass
 
 
