@@ -90,7 +90,7 @@ class UserInputHandler:
             return email
 
     @staticmethod
-    def get_valid_password(prompt):
+    def get_valid_user_password(prompt):
         """this function will prompt the user to keep entering password
         and validating it until its correct"""
         password = input(prompt)
@@ -100,7 +100,7 @@ class UserInputHandler:
         return password
 
     @staticmethod
-    def get_valid_phone_no(prompt):
+    def get_valid_phone_number(prompt):
         """this function will prompt the user to keep entering phone no
         and validating it until its correct"""
         phone_no = input(prompt)

@@ -1,5 +1,6 @@
 """the program starts from this file"""
 
+import traceback
 from core.user import User
 from data import menus, prompts
 from services.car_services.vendor_manage_car import manage_cars
@@ -55,8 +56,8 @@ def register_user():
         "Enter Your Date of Birth(YY-MM-DD): "
     )
     email = UserInputHandler.get_valid_email("Enter Your Email: ")
-    user_password = UserInputHandler.get_valid_password("Enter Your Password: ")
-    phone_number = UserInputHandler.get_valid_phone_no("Enter Your Phone Number: ")
+    user_password = UserInputHandler.get_valid_user_password("Enter Your Password: ")
+    phone_number = UserInputHandler.get_valid_phone_number("Enter Your Phone Number: ")
     user = User(
         username,
         user_role,
@@ -156,4 +157,10 @@ def main():
     print(prompts.EXIT)
 
 
-main()
+try:
+    main()
+except Exception as e:
+    print(prompts.GENERAL_ERROR)
+    tb = traceback.extract_tb(e.__traceback__)[-1]
+    print(f"\nERROR LOCATION: {tb.filename}\nLINE NO: {tb.lineno}\nFUNCTION: {tb.name}")
+    print(f"\nERROR TYPE: {type(e).__name__}\nMESSAGE: {e}\n")

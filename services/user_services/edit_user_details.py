@@ -2,14 +2,22 @@
 
 import os
 import sys
+from mysql.connector import Error
 from data import prompts
 from services.user_services.delete_user import delete_user
+from config.db_connection import create_connection
 
 
-def edit_user_detail(user, item_to_edit, prompt=""):
+def edit_user_detail(user, item_to_edit, new_value=""):
     """edits allowed detail"""
+    current_value = getattr(user, item_to_edit)
     if item_to_edit == "DELETE":
         manage_delete(user.username)
+    else:
+        if edit_user_item(user.username, item_to_edit, new_value):
+            setattr(user, item_to_edit, new_value)
+            print(f"\nChanging detail '{current_value}' to '{new_value}'.")
+            print(prompts.UPDATE_SUCCESSFUL)
 
 
 def manage_delete(username):
@@ -26,3 +34,20 @@ def manage_delete(username):
             print(prompts.UNKNOWN_ERROR)
     else:
         print(prompts.INVALID_INPUT)
+
+
+def edit_user_item(username, item_to_edit, new_value):
+    """edits user detail in DB"""
+    conn = create_connection()
+    try:
+        cursor = conn.cursor()
+        update_user_sql = f"UPDATE users SET {item_to_edit} = %s WHERE username=%s;"
+        cursor.execute(update_user_sql, (new_value, username))
+        conn.commit()
+        return True
+    except Error as e:
+        print(prompts.DB_ERROR.format(e))
+        return None
+    finally:
+        cursor.close()
+        conn.close()

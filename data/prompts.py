@@ -6,6 +6,7 @@ EXIT = f"\n{DASHES}Thanks for using CUAP Car Rental services. Exiting{DASHES}\n"
 INVALID_INPUT = f"\n{DASHES}ERROR: INVALID INPUT{DASHES}\n"
 STANDARD_MENU = "Choose an option from the Menu"
 DB_ERROR = " --------------- DB ERROR: {} --------------- "
+GENERAL_ERROR = "\n --------------- PROGRAM CRASHED --------------- "
 DATA_LOADING_FAILED = f"\n{DASHES}ERROR: DATA LOADING FAILED{DASHES}\n"
 LOGIN_SUCCESS = f"\n{DASHES}LOGIN SUCCESSFUL{DASHES}\n"
 LOGIN_FAILED = (

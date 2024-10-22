@@ -3,10 +3,12 @@
 from data import prompts
 from services.user_services.edit_user_details import edit_user_detail
 from utils.get_user_option import get_user_option
+from utils.input_handler import UserInputHandler
 
 
 def manage_user_profile(user):
     """handles profile edits for all user roles"""
+    print(prompts.MY_DETAILS)
     heading = "This is your current profile. Select any detail to edit below"
     profile_menu = [
         f"Username: {user.username}",
@@ -23,16 +25,52 @@ def manage_user_profile(user):
     actions = {
         1: lambda: print(prompts.EDIT_NOT_ALLOWED),
         2: lambda: print(prompts.EDIT_NOT_ALLOWED),
-        3: lambda: edit_user_detail(user, "first_name", "Enter Your new First Name: "),
-        4: lambda: edit_user_detail(user, "last_name", "Enter Your new Last Name: "),
-        5: lambda: edit_user_detail(user, "gender", "Select Your new Gender (M/F/O): "),
-        6: lambda: edit_user_detail(
-            user, "date_of_birth", "Enter Your new Date of Birth(YY-MM-DD): "
+        3: lambda: edit_user_detail(
+            user,
+            "first_name",
+            new_value=UserInputHandler.get_valid_first_name(
+                "Enter Your new First Name: "
+            ),
         ),
-        7: lambda: edit_user_detail(user, "email", "Enter Your new Email: "),
-        8: lambda: edit_user_detail(user, "user_password", "Enter Your new Password: "),
+        4: lambda: edit_user_detail(
+            user,
+            "last_name",
+            new_value=UserInputHandler.get_valid_last_name(
+                "Enter Your new Last Name: "
+            ),
+        ),
+        5: lambda: edit_user_detail(
+            user,
+            "gender",
+            new_value=UserInputHandler.get_valid_gender(
+                "Select Your new Gender (M/F/O): "
+            ),
+        ),
+        6: lambda: edit_user_detail(
+            user,
+            "date_of_birth",
+            new_value=UserInputHandler.get_valid_date_of_birth(
+                "Enter Your new Date of Birth(YY-MM-DD): "
+            ),
+        ),
+        7: lambda: edit_user_detail(
+            user,
+            "email",
+            new_value=UserInputHandler.get_valid_email("Enter Your new Email: "),
+        ),
+        8: lambda: edit_user_detail(
+            user,
+            "user_password",
+            new_value=UserInputHandler.get_valid_user_password(
+                "Enter Your new Password: "
+            ),
+        ),
         9: lambda: edit_user_detail(
-            user, "phone_number", "Enter Your new Phone Number: "
+            user,
+            "phone_number",
+            new_value=UserInputHandler.get_valid_phone_number(
+                "Enter Your new Phone Number: "
+            ),
         ),
         10: lambda: edit_user_detail(user, "DELETE"),
     }
