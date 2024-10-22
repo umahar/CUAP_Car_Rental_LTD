@@ -1,5 +1,7 @@
 """this file will call the relevant input validation function and return prompts"""
 
+from services.user_services.is_email_unique import is_email_unique
+from services.user_services.is_username_unique import is_username_unique
 from utils.input_check import CheckInput
 from data import prompts
 
@@ -11,11 +13,15 @@ class UserInputHandler:
     def get_valid_username(prompt):
         """This function will prompt the user to keep entering username
         and validating it until it's correct."""
-        username = input(prompt)
-        while not CheckInput.is_valid_username(username):
-            print(prompts.INVALID_INPUT)
+        while True:
             username = input(prompt)
-        return username
+            if not CheckInput.is_valid_username(username):
+                print(prompts.INVALID_INPUT)
+                continue
+            if not is_username_unique(username):
+                print(prompts.INVALID_USERNAME)
+                continue
+            return username
 
     @staticmethod
     def get_valid_user_role(prompt):
@@ -71,11 +77,15 @@ class UserInputHandler:
     def get_valid_email(prompt):
         """this function will prompt the user to keep entering email
         and validating it until its correct"""
-        email = input(prompt)
-        while not CheckInput.is_valid_email(email):
-            print(prompts.INVALID_INPUT)
+        while True:
             email = input(prompt)
-        return email
+            if not CheckInput.is_valid_email(email):
+                print(prompts.INVALID_INPUT)
+                continue
+            if not is_email_unique(email):
+                print(prompts.INVALID_EMAIL)
+                continue
+            return email
 
     @staticmethod
     def get_valid_password(prompt):

@@ -40,6 +40,7 @@ def login_user():
 
 def register_user():
     """creates a new user object"""
+    print("\nEnter your details to register. Press 'CTRL+C' to Exit anytime.\n")
     username = UserInputHandler.get_valid_username("Enter Your Username: ")
     user_role = UserInputHandler.get_valid_user_role(
         "Select Your User Role (Customer/Vendor): "
