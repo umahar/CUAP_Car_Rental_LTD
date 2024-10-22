@@ -22,6 +22,7 @@ vendor_login_menu = [
 ]
 
 admin_login_menu = [
+    "Manage Profile",
     "Notifications",
     "User Management",
     "Manage Cars",

@@ -18,3 +18,5 @@ GET_USER_ID_BY_EMAIL = """SELECT user_id from users where email = %s;"""
 GET_USER_BY_EMAIL = """SELECT * from users where email = %s;"""
 
 GET_USER_BY_USERNAME = """SELECT * from users where username = %s;"""
+
+DELETE_USER = """DELETE FROM users WHERE username = %s;"""

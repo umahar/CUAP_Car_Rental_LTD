@@ -26,7 +26,9 @@ def display_main_menu():
 
 def login_user():
     """authenticates and login the user"""
-    email = UserInputHandler.get_valid_email("Enter your account Email to Login: ")
+    email = UserInputHandler.get_valid_email(
+        "Enter your account Email to Login: ", unique_check=False
+    )
     password = input("Enter your Account Password: ")
     if authenticate_user(email, password):
         user_id = get_user_id_by_email(email)
@@ -116,11 +118,11 @@ def vendor_menu(vendor):
         if opt == 2:
             pass
         if opt == 3:
-            manage_user_profile(vendor)
+            pass
         if opt == 4:
             pass
         if opt == 5:
-            pass
+            manage_user_profile(vendor)
         if opt == 6:
             pass
         if opt == 7:
@@ -134,11 +136,12 @@ def admin_menu(admin):
         if opt == 0:
             break
         if opt == 1:
-            pass
+            # NOT GOOD
+            manage_user_profile(admin)
         if opt == 2:
             pass
         if opt == 3:
-            manage_user_profile(admin)
+            pass
         if opt == 4:
             pass
         if opt == 5:

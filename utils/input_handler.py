@@ -10,7 +10,7 @@ class UserInputHandler:
     """this file will call the relevant input validation function and return prompts"""
 
     @staticmethod
-    def get_valid_username(prompt):
+    def get_valid_username(prompt, unique_check=True):
         """This function will prompt the user to keep entering username
         and validating it until it's correct."""
         while True:
@@ -18,9 +18,10 @@ class UserInputHandler:
             if not CheckInput.is_valid_username(username):
                 print(prompts.INVALID_INPUT)
                 continue
-            if not is_username_unique(username):
-                print(prompts.INVALID_USERNAME)
-                continue
+            if unique_check:
+                if not is_username_unique(username):
+                    print(prompts.INVALID_USERNAME)
+                    continue
             return username
 
     @staticmethod
@@ -74,7 +75,7 @@ class UserInputHandler:
         return dob
 
     @staticmethod
-    def get_valid_email(prompt):
+    def get_valid_email(prompt, unique_check=True):
         """this function will prompt the user to keep entering email
         and validating it until its correct"""
         while True:
@@ -82,9 +83,10 @@ class UserInputHandler:
             if not CheckInput.is_valid_email(email):
                 print(prompts.INVALID_INPUT)
                 continue
-            if not is_email_unique(email):
-                print(prompts.INVALID_EMAIL)
-                continue
+            if unique_check:
+                if not is_email_unique(email):
+                    print(prompts.INVALID_EMAIL)
+                    continue
             return email
 
     @staticmethod
