@@ -7,4 +7,8 @@ INSERT INTO cars(
 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
 """
 
-GET_ALL_CARS = """SELECT * FROM cars WHERE vendor_id = %s"""
+GET_ALL_CARS = """SELECT * FROM cars WHERE vendor_id = %s;"""
+
+DELETE_CAR = """DELETE FROM cars WHERE car_id = %s;"""
+
+GET_CAR_DATA_BY_ID = """SELECT * from cars where car_id = %s;"""
