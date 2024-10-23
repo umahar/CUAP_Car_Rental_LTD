@@ -1,6 +1,5 @@
 """allows vendor to manage cars"""
 
-from operator import index
 from core.car import Car
 from data import prompts
 from services.car_services.add_new_car import add_new_car
@@ -15,7 +14,8 @@ def manage_cars(vendor):
     vendor_id = get_user_id_by_email(vendor.email)
     while True:
         car_opt = get_user_option(
-            ["Add a New Car", "View Cars", "Delete a Car"], prompts.STANDARD_MENU
+            ["Add a New Car", "View Cars", "Edit a Car", "Delete a Car"],
+            prompts.STANDARD_MENU,
         )
         if car_opt == 0:
             break
@@ -24,6 +24,8 @@ def manage_cars(vendor):
         if car_opt == 2:
             view_all_cars(vendor_id)
         if car_opt == 3:
+            edit_car(vendor_id)
+        if car_opt == 4:
             pass
 
 
@@ -63,6 +65,25 @@ def view_all_cars(vendor_id):
             print(
                 f"CAR ID: {car[0]}\n\nMAKE: {car[2]} | MODEL: {car[3]} | YEAR: {car[4]}\nCOLOR: {car[5]} | TYPE: {car[6]} | PRICE/DAY: {car[7]}\nMILEAGE: {car[8]} | LOCATION: {car[9]}\n\n"
             )
+    else:
+        print(prompts.NO_CARS)
 
+
+def edit_car(vendor_id):
+    """edits a car of a vendor"""
+    cars = get_all_cars(vendor_id)
+    car_ids = []
+    if cars:
+        print(f"\nTOTAL CARS: {len(cars)}\n")
+        for car in cars:
+            car_ids.append(str(car[0]))
+            print(
+                f"\nCAR ID: {car[0]}\n\nMAKE: {car[2]} | MODEL: {car[3]} | YEAR: {car[4]}\nCOLOR: {car[5]} | TYPE: {car[6]} | PRICE/DAY: {car[7]}\nMILEAGE: {car[8]} | LOCATION: {car[9]}"
+            )
+        car_id = input("\nEnter the Car ID to edit details: ")
+        if car_id in car_ids:
+            print("here")
+        else:
+            print(prompts.INVALID_INPUT)
     else:
         print(prompts.NO_CARS)
