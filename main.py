@@ -4,6 +4,7 @@ import traceback
 from core.user import User
 from data import menus, prompts
 from services.car_services.vendor_manage_car import manage_cars
+from services.notification_services.notification import add_new_notification
 from services.user_services.authenticate_user import authenticate_user
 from services.user_services.get_user_id_by_email import get_user_id_by_email
 from services.user_services.load_user_data_from_db import load_user_data
@@ -35,6 +36,7 @@ def login_user():
         user_id = get_user_id_by_email(email)
         user = load_user_data(user_id)
         if user:
+            add_new_notification(user_id, "LOGGED IN")
             handle_login_menu(user)
         else:
             print(prompts.DATA_LOADING_FAILED)
