@@ -2,7 +2,7 @@
 
 from mysql.connector import Error
 from config.db_connection import create_connection
-from data import prompts, users_queries
+from data import cars_queries, prompts
 
 
 def delete_car_by_id(car_id):
@@ -11,7 +11,7 @@ def delete_car_by_id(car_id):
     conn = create_connection()
     try:
         cursor = conn.cursor()
-        cursor.execute(users_queries.DELETE_USER, (car_id,))
+        cursor.execute(cars_queries.DELETE_CAR, (car_id,))
         conn.commit()
         return True
     except Error as e:
