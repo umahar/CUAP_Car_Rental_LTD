@@ -36,8 +36,17 @@ def login_user():
         user_id = get_user_id_by_email(email)
         user = load_user_data(user_id)
         if user:
-            add_new_notification(user_id, "LOGGED IN")
+            add_new_notification(
+                user_id,
+                notification_message="LOGGED IN",
+                category="Account/Profile",
+            )
             handle_login_menu(user)
+            add_new_notification(
+                user_id,
+                notification_message="LOGGED OUT",
+                category="Account/Profile",
+            )
         else:
             print(prompts.DATA_LOADING_FAILED)
     else:
@@ -72,7 +81,23 @@ def register_user():
         phone_number,
     )
     print(prompts.REGISTER_SUCCESS)
+    user_id = get_user_id_by_email(email)
+    add_new_notification(
+        user_id,
+        notification_message="REGISTERED",
+        category="Account/Profile",
+    )
+    add_new_notification(
+        user_id,
+        notification_message="LOGGED IN",
+        category="Account/Profile",
+    )
     handle_login_menu(user)
+    add_new_notification(
+        user_id,
+        notification_message="LOGGED OUT",
+        category="Account/Profile",
+    )
 
 
 def handle_login_menu(user):

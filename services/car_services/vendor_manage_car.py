@@ -6,6 +6,7 @@ from services.car_services.add_new_car import add_new_car
 from services.car_services.edit_car_details import edit_car_detail, manage_delete
 from services.car_services.get_all_cars import get_all_cars
 from services.car_services.get_data_by_car_id import get_data_by_car_id
+from services.notification_services.notification import add_new_notification
 from services.user_services.get_user_id_by_email import get_user_id_by_email
 from utils.car_input_handler import CarInputHandler
 from utils.get_user_option import get_user_option
@@ -56,6 +57,11 @@ def register_car(vendor_id):
     )
     add_new_car(car)
     print(prompts.CAR_ADDED)
+    add_new_notification(
+        user_id=vendor_id,
+        notification_message="CAR REGISTERED",
+        category="Cars",
+    )
 
 
 def view_all_cars(vendor_id):

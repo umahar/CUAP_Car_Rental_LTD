@@ -4,7 +4,9 @@ import os
 import sys
 from mysql.connector import Error
 from data import prompts
+from services.notification_services.notification import add_new_notification
 from services.user_services.delete_user import delete_user
+from services.user_services.get_user_id_by_email import get_user_id_by_email
 from config.db_connection import create_connection
 
 
@@ -18,6 +20,11 @@ def edit_user_detail(user, item_to_edit, new_value=""):
             setattr(user, item_to_edit, new_value)
             print(f"\nChanging detail '{current_value}' to '{new_value}'.")
             print(prompts.UPDATE_SUCCESSFUL)
+            add_new_notification(
+                user_id=get_user_id_by_email(user.email),
+                notification_message="PROFILE UPDATED",
+                category="Account/Profile",
+            )
 
 
 def manage_delete(username):

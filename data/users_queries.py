@@ -20,3 +20,5 @@ GET_USER_BY_EMAIL = """SELECT * from users where email = %s;"""
 GET_USER_BY_USERNAME = """SELECT * from users where username = %s;"""
 
 DELETE_USER = """DELETE FROM users WHERE username = %s;"""
+
+GET_VENDOR_ID_BY_CAR_ID = """SELECT vendor_id from cars where car_id = %s;"""
