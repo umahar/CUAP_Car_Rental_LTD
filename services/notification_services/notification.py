@@ -22,3 +22,22 @@ def add_new_notification(user_id, notification_message, category):
     finally:
         cursor.close()
         conn.close()
+
+
+##when notification is viewed mark it as read
+
+
+def get_all_unread_notifications(user_id):
+    """fetches all unread notifications"""
+    conn = create_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(notifications_queries.GET_UNREAD_NOTIFICATIONS, (int(user_id),))
+        rows = cursor.fetchall()
+        return rows
+    except Error as e:
+        print(prompts.DB_ERROR.format(e))
+        return None
+    finally:
+        cursor.close()
+        conn.close()

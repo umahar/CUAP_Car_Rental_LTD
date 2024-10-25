@@ -4,7 +4,13 @@ import traceback
 from core.user import User
 from data import menus, prompts
 from services.car_services.vendor_manage_car import manage_cars
-from services.notification_services.notification import add_new_notification
+from services.notification_services.notification import (
+    add_new_notification,
+    get_all_unread_notifications,
+)
+from services.notification_services.notification_display_management import (
+    display_notifications,
+)
 from services.user_services.authenticate_user import authenticate_user
 from services.user_services.get_user_id_by_email import get_user_id_by_email
 from services.user_services.load_user_data_from_db import load_user_data
@@ -107,6 +113,11 @@ def handle_login_menu(user):
             prompts.DASHES, user.first_name, user.last_name, prompts.DASHES
         )
     )
+    unread_notifications = get_all_unread_notifications(
+        get_user_id_by_email(user.email)
+    )
+    if unread_notifications:
+        print(f"You have {len(unread_notifications)} new notifications.\n")
     if user.user_role == "Customer":
         customer_menu(user)
     elif user.user_role == "Vendor":
@@ -132,7 +143,7 @@ def customer_menu(customer):
         if opt == 5:
             pass
         if opt == 6:
-            pass
+            display_notifications(get_user_id_by_email(customer.email))
 
 
 def vendor_menu(vendor):
@@ -152,7 +163,7 @@ def vendor_menu(vendor):
         if opt == 5:
             manage_user_profile(vendor)
         if opt == 6:
-            pass
+            display_notifications(get_user_id_by_email(vendor.email))
         if opt == 7:
             pass
 
@@ -175,7 +186,7 @@ def admin_menu(admin):
         if opt == 5:
             pass
         if opt == 6:
-            pass
+            display_notifications(get_user_id_by_email(admin.email))
 
 
 def main():
