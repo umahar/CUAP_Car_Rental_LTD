@@ -113,11 +113,6 @@ def handle_login_menu(user):
             prompts.DASHES, user.first_name, user.last_name, prompts.DASHES
         )
     )
-    unread_notifications = get_all_unread_notifications(
-        get_user_id_by_email(user.email)
-    )
-    if unread_notifications:
-        print(f"You have {len(unread_notifications)} new notifications.\n")
     if user.user_role == "Customer":
         customer_menu(user)
     elif user.user_role == "Vendor":
@@ -129,6 +124,11 @@ def handle_login_menu(user):
 def customer_menu(customer):
     """customer menu handling"""
     while True:
+        unread_notifications = get_all_unread_notifications(
+            get_user_id_by_email(customer.email)
+        )
+        if unread_notifications:
+            print(f"NOTICE: {len(unread_notifications)} NEW NOTIFICATIONS.\n")
         opt = get_user_option(menus.customer_login_menu, prompts.STANDARD_MENU)
         if opt == 0:
             break
@@ -149,6 +149,11 @@ def customer_menu(customer):
 def vendor_menu(vendor):
     """vendor menu handling"""
     while True:
+        unread_notifications = get_all_unread_notifications(
+            get_user_id_by_email(vendor.email)
+        )
+        if unread_notifications:
+            print(f"NOTICE: {len(unread_notifications)} NEW NOTIFICATIONS.\n")
         opt = get_user_option(menus.vendor_login_menu, prompts.STANDARD_MENU)
         if opt == 0:
             break
@@ -171,6 +176,11 @@ def vendor_menu(vendor):
 def admin_menu(admin):
     """admin menu handling"""
     while True:
+        unread_notifications = get_all_unread_notifications(
+            get_user_id_by_email(admin.email)
+        )
+        if unread_notifications:
+            print(f"NOTICE: {len(unread_notifications)} NEW NOTIFICATIONS.\n")
         opt = get_user_option(menus.admin_login_menu, prompts.STANDARD_MENU)
         if opt == 0:
             break
