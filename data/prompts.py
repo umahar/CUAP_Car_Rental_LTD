@@ -31,7 +31,7 @@ EDIT_NOT_ALLOWED = (
     f" Please contact admin support.{DASHES}\n"
 )
 VIEW_NOTIFICATIONS = f"\n{DASHES}VIEW YOUR ACCOUNT NOTIFICATIONS{DASHES}\n"
-NO_NOTIFICATIONS = f"\n{DASHES}ERROR:Account has no notifications yet.{DASHES}\n"
+NO_NOTIFICATIONS = f"\n{DASHES}NO NEW NOTIFICATIONS FOUND{DASHES}\n"
 SELECT_NOTIFICATION = "\nSelect a Notification to view its details:"
 NOTIFICATION_HEADING = "\nNo.       Notification ID   \t Date      Type"
 NOTIFICATION_DETAILS = f"\n{DASHES}NOTIFICATION DETAILS{DASHES}\n"

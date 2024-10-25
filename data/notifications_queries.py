@@ -6,4 +6,6 @@ INSERT INTO notifications(
     ) 
 VALUES (%s, %s,%s);
 """
-DELETE_ALL_NOTIFICATIONS = """DELETE * FROM notifications WHERE user_id = %s;"""
+DELETE_ALL_NOTIFICATIONS = """DELETE FROM notifications WHERE user_id = %s;"""
+
+MARK_AS_READ = """UPDATE notifications set is_read = 1 WHERE notification_id = %s;"""

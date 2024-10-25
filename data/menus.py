@@ -30,3 +30,19 @@ admin_login_menu = [
     "Financial Reports",
     "Manage User Roles",
 ]
+
+main_notification_menu = [
+    "All Notifications",
+    "Unread Notifications",
+    "Notifications by Category",
+    "Delete all Notification",
+]
+
+notification_categories = [
+    "Account/Profile",
+    "Rentals & Bookings",
+    "Payments",
+    "Admin Support Ticket",
+    "Cars",
+    "Balance",
+]
