@@ -25,19 +25,52 @@ def add_new_notification(user_id, notification_message, category):
 
 
 ##when notification is viewed mark it as read
-
-
-def get_all_unread_notifications(user_id):
+def get_all_notifications(user_id, sort_by="DESC"):
     """fetches all unread notifications"""
     conn = create_connection()
     try:
         cursor = conn.cursor()
-        cursor.execute(notifications_queries.GET_UNREAD_NOTIFICATIONS, (int(user_id),))
+        query = f"""SELECT * FROM notifications WHERE user_id = %s ORDER BY created_at {sort_by};"""
+        cursor.execute(query, (int(user_id),))
         rows = cursor.fetchall()
         return rows
     except Error as e:
         print(prompts.DB_ERROR.format(e))
         return None
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def get_all_unread_notifications(user_id, sort_by="DESC"):
+    """fetches all unread notifications"""
+    conn = create_connection()
+    try:
+        cursor = conn.cursor()
+        query = f"""SELECT * FROM notifications WHERE user_id = %s and is_read = 0 ORDER BY created_at {sort_by};"""
+        cursor.execute(query, (int(user_id),))
+        rows = cursor.fetchall()
+        return rows
+    except Error as e:
+        print(prompts.DB_ERROR.format(e))
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def delete_notifications(user_id):
+    """deletes notifications of a user_id"""
+
+    conn = create_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(notifications_queries.DELETE_ALL_NOTIFICATIONS, (user_id,))
+        conn.commit()
+        return True
+    except Error as e:
+        print(prompts.DB_ERROR.format(e))
+        return False
     finally:
         cursor.close()
         conn.close()
